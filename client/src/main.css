@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Font */
+@font-face {
+  font-family: "InfinitySans-RegularA1";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-RegularA1.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Jal_Onuel";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Jal_Onuel.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Style */
+* {
+  font-family: "Jal_Onuel";
+}
+
+div {
+  box-sizing: border-box;
+}
+
+/* Login */
+.background {
+  @apply fixed top-0 bottom-0 left-0 right-0 z-10 bg-base-100;
+}
