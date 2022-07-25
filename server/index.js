@@ -16,4 +16,6 @@ app.post("/api/register", (req, res) => {
   res.send("회원가입 완료!");
 });
 
+app.get("/api/places/:id", (req, res) => {});
+
 app.listen(5000, () => [console.log("Listening on port 5000")]);
