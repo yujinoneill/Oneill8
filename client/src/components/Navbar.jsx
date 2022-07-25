@@ -1,6 +1,6 @@
 const Navbar = () => {
   return (
-    <nav className="navbar bg-base-100 border border-b-base-200">
+    <nav className="navbar bg-base-100 border-b border-b-base-200 box-border">
       <div>
         <a href="/" className="btn btn-ghost normal-case text-xl">
           🍽️ Oneill8
@@ -54,5 +54,6 @@ const Navbar = () => {
       </div>
     </nav>
   );
-}
+};
+
 export default Navbar;

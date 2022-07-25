@@ -24,6 +24,16 @@
   font-family: "Jal_Onuel";
 }
 
+html,
+body,
+#root {
+  height: 100vh;
+}
+
+#root {
+  overflow-y: auto;
+}
+
 div {
   box-sizing: border-box;
 }
@@ -31,4 +41,12 @@ div {
 /* Login */
 .background {
   @apply fixed top-0 bottom-0 left-0 right-0 z-10 bg-base-100;
+}
+
+.places {
+  -ms-overflow-style: none;
+}
+
+.places::-webkit-scrollbar {
+  display: none;
 }
