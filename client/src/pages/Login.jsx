@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useRef } from "react";
 
-export default function Login() {
+const Login = () => {
   const idRef = useRef();
   const pwRef = useRef();
 
@@ -69,4 +69,6 @@ export default function Login() {
       </section>
     </div>
   );
-}
+};
+
+export default Login;

@@ -1,4 +1,4 @@
-export default function Navbar() {
+const Navbar = () => {
   return (
     <nav className="navbar bg-base-100 border border-b-base-200">
       <div>
@@ -55,3 +55,4 @@ export default function Navbar() {
     </nav>
   );
 }
+export default Navbar;

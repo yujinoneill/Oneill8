@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useRef } from "react";
 
-export default function Register() {
+const Register = () => {
   const idRef = useRef();
   const emailRef = useRef();
   const pwRef = useRef();
@@ -80,3 +80,4 @@ export default function Register() {
     </div>
   );
 }
+export default Register;
