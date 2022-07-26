@@ -1,21 +1,31 @@
 import { useEffect, useState } from "react";
 import DetailMap from "../components/DetailMap";
 
+// Data
 const dummyData = [
   {
     id: 1,
-    roadAddress: "광주 북구 첨단연신로107번길 6",
-    lat: 35.2077048085125,
-    lng: 126.863858013679,
-    name: "뚜레주르 첨단신용점",
+    roadAddress: "광주 동구 서석로 36",
+    lat: 35.146148577409,
+    lng: 126.91751491905569,
+    name: "베비에르 문화의전당점",
+    img: "https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20190129_56%2F1548721018631t8U40_JPEG%2FlvV2ykQatYjEg74JsSnmxrAU.JPG.jpg",
     desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident cupiditate perspiciatis ab nam corporis, expedita praesentium repellat totam, eum fugit, modi necessitatibus. Sequi unde veniam quisquam facere corrupti aliquid sapiente!",
   },
 ];
 
 const reviews = [
   {
+    id: 0,
+    username: "qwerty",
     rate: 5,
     comment: "존맛탱!",
+  },
+  {
+    id: 1,
+    username: "asdfg",
+    rate: 3,
+    comment: "그저 그럼",
   },
 ];
 
