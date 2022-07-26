@@ -58,12 +58,9 @@ const Detail = () => {
 
   return (
     <div className="container xl:max-w-7xl grid grid-cols-1 lg:grid-cols-2 mx-auto">
-      <div className="card w-[90%] my-6 bg-base-100 shadow-xl justify-self-center lg:justify-self-end ">
+      <div className="card w-[90%] h-max my-6 bg-base-100 shadow-xl justify-self-center lg:justify-self-end ">
         <figure>
-          <img
-            src="https://www.tlj.co.kr:7008/static/images/main/img_main2.jpg?v181022"
-            alt="Shoes"
-          />
+          <img src={dummyData[0].img} alt="베비에르 빵집 사진" />
         </figure>
         <div className="card-body">
           <h1 className="card-title text-2xl justify-center">{title}</h1>
@@ -87,9 +84,9 @@ const Detail = () => {
       </div>
       <div className="flex flex-col items-center">
         <DetailMap width="90%" height="250px" {...dummyData[0]} />
-        <div className="review w-[90%] mt-4">
-          <div class="card w-full bg-base-100 shadow-xl">
-            <div class="card-body">
+        <div className="review w-[90%] mb-6">
+          <div className="card w-full bg-base-100 shadow-xl">
+            <div className="card-body">
               <h4 className="font-bold">이미 다녀왔다면 후기를 남겨 보세요!</h4>
               <div className="rating gap-1">
                 <input
@@ -120,9 +117,9 @@ const Detail = () => {
                 />
               </div>
               <textarea
-                className="border w-full"
+                className="w-full textarea textarea-bordered"
                 name="review"
-                rows="4"
+                rows="3"
               ></textarea>
               <div className="card-actions justify-end">
                 <button className="btn btn-primary btn-sm">작성 완료</button>
