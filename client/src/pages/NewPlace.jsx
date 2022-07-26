@@ -12,6 +12,10 @@ const NewPlace = () => {
   const imageRef = useRef();
 
   const [address, setAddress] = useState("광주 서구 무진대로 904");
+  const [lat, setLat] = useState();
+  const [lng, setLng] = useState();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     // 지도 생성
@@ -25,6 +29,8 @@ const NewPlace = () => {
       // 정상적으로 검색이 완료됐으면
       if (status === kakao.maps.services.Status.OK) {
         var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+        setLat(result[0].y);
+        setLng(result[0].x);
 
         // 결과값으로 받은 위치를 마커로 표시합니다
         var marker = new kakao.maps.Marker({
@@ -43,23 +49,44 @@ const NewPlace = () => {
         map.setCenter(coords);
       }
     });
-  }, [address]);
+  }, [address, lat, lng]);
 
   const searchPlaceHandler = (e) => {
     e.preventDefault();
     setAddress(placeAddressRef.current.value);
   };
 
-  const navigate = useNavigate();
-
   const submitHandler = async (e) => {
     e.preventDefault();
+
+    // 유효성 검사
+    if (placeNameRef.current.value.length < 1) {
+      placeNameRef.current.focus();
+      return;
+    }
+
+    if (placeAddressRef.current.value.length < 1) {
+      placeAddressRef.current.focus();
+      return;
+    }
+
+    if (descRef.current.value.length < 1) {
+      descRef.current.focus();
+      return;
+    }
+
+    if (imageRef.current.value.length < 1) {
+      imageRef.current.focus();
+      return;
+    }
 
     await axios.post("/api/place/new", {
       placeName: placeNameRef.current.value,
       roadAddress: placeAddressRef.current.value,
-      image: imageRef.current.value,
       desc: descRef.current.value,
+      image: imageRef.current.value,
+      lat,
+      lng,
     });
     navigate("/");
   };
