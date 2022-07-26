@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Detail from "./pages/Detail";
+import NewPlace from "./pages/NewPlace";
 
 export default function App() {
   return (
@@ -16,7 +17,8 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/places/:id" element={<Detail />} />
+        <Route path="/place/:id" element={<Detail />} />
+        <Route path="/place/new" element={<NewPlace />} />
       </Routes>
     </BrowserRouter>
   );
