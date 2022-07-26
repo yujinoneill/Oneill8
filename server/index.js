@@ -1,11 +1,24 @@
 const express = require("express");
+const mongoose = require("mongoose");
+
+const Place = require("./models/place");
+
+mongoose.connect("mongodb://localhost:27017/oneill8");
+
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", () => {
+  console.log("Database connected");
+});
+
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+app.get("/api", async (req, res) => {
+  const places = await Place.find({});
+  res.send(places);
 });
 
 app.post("/api/login", (req, res) => {
@@ -16,6 +29,15 @@ app.post("/api/register", (req, res) => {
   res.send("회원가입 완료!");
 });
 
-app.get("/api/places/:id", (req, res) => {});
+app.get("/api/place/:id", async (req, res) => {
+  const place = await Place.findById(req.params.id).populate("reviews");
+  res.send(place);
+});
+
+app.post("/api/place/new", async (req, res) => {
+  const place = new Place(req.body);
+  await place.save();
+  res.send("등록 완료!");
+});
 
 app.listen(5000, () => [console.log("Listening on port 5000")]);
