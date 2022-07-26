@@ -29,6 +29,24 @@ const reviews = [
   },
 ];
 
+// Components
+const ReviewBox = ({ username, rate, comment }) => {
+  return (
+    <div className="card w-full bg-base-100 shadow-xl mt-4">
+      <div className="card-body">
+        <h2 className="card-title">{rate}</h2>
+        <p>
+          {username} : {comment}
+        </p>
+        <div className="card-actions justify-end">
+          <button className="btn btn-sm btn-primary">수정</button>
+          <button className="btn btn-sm btn-primary">삭제</button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const Detail = () => {
   const [title, setTitle] = useState();
   const [desc, setDesc] = useState();
