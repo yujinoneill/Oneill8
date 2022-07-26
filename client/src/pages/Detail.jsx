@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import axios from "axios";
 import DetailMap from "../components/DetailMap";
 
 // Data
@@ -48,22 +50,36 @@ const ReviewBox = ({ username, rate, comment }) => {
 };
 
 const Detail = () => {
-  const [title, setTitle] = useState();
+  const [data, setData] = useState(dummyData);
+  const [placeName, setPlaceName] = useState();
+  const [roadAddress, setRoadAddress] = useState();
   const [desc, setDesc] = useState();
+  const [image, setImage] = useState();
+
+  const { id } = useParams();
 
   useEffect(() => {
-    setTitle(dummyData[0].name);
-    setDesc(dummyData[0].desc);
-  }, []);
+    setPlaceName(data.placeName);
+    setRoadAddress(data.roadAddress);
+    setDesc(data.desc);
+    setImage(data.image);
+  }, [data.placeName, data.roadAddress, data.desc, data.image]);
+
+  useEffect(() => {
+    axios
+      .get(`/api/place/${id}`)
+      .then((res) => setData(res.data))
+      .catch((err) => console.log(err));
+  }, [id, data]);
 
   return (
     <div className="container xl:max-w-7xl grid grid-cols-1 lg:grid-cols-2 mx-auto">
       <div className="card w-[90%] h-max my-6 bg-base-100 shadow-xl justify-self-center lg:justify-self-end ">
         <figure>
-          <img src={dummyData[0].img} alt="베비에르 빵집 사진" />
+          <img src={image} alt={`${placeName} 대표 사진`} />
         </figure>
         <div className="card-body">
-          <h1 className="card-title text-2xl justify-center">{title}</h1>
+          <h1 className="card-title text-2xl justify-center">{placeName}</h1>
           <h2 className="text-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -77,18 +93,18 @@ const Detail = () => {
                 clipRule="evenodd"
               />
             </svg>
-            {dummyData[0].roadAddress}
+            {roadAddress}
           </h2>
           <p>{desc}</p>
         </div>
       </div>
       <div className="flex flex-col items-center">
-        <DetailMap width="90%" height="250px" {...dummyData[0]} />
+        <DetailMap width="90%" height="250px" {...data} />
         <div className="review w-[90%] mb-6">
           <div className="card w-full bg-base-100 shadow-xl">
             <div className="card-body">
               <h4 className="font-bold">이미 다녀왔다면 후기를 남겨 보세요!</h4>
-              <div className="rating gap-1">
+              {/* <div className="rating gap-1">
                 <input
                   type="radio"
                   name="rating-3"
@@ -115,7 +131,7 @@ const Detail = () => {
                   className="mask mask-heart bg-green-400"
                   checked
                 />
-              </div>
+              </div> */}
               <textarea
                 className="w-full textarea textarea-bordered"
                 name="review"
@@ -126,9 +142,11 @@ const Detail = () => {
               </div>
             </div>
           </div>
-          {reviews.map((item) => {
-            return <ReviewBox key={item.id} {...item} />;
-          })}
+          {data.reviews
+            ? data.reviews.map((item) => {
+                return <ReviewBox key={item._id} {...item} />;
+              })
+            : null}
         </div>
       </div>
     </div>
