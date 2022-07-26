@@ -29,7 +29,7 @@ const DetailMap = (props) => {
 
   return (
     <div
-      className="rounded-xl mt-6 mx-6"
+      className="rounded-xl my-6 mx-6"
       id="map"
       style={{ width: `${props.width || "auto"}`, height: `${props.height}` }}
     />
