@@ -129,6 +129,9 @@ const Detail = () => {
               </div>
             </div>
           </div>
+          {reviews.map((item) => {
+            return <ReviewBox key={item.id} {...item} />;
+          })}
         </div>
       </div>
     </div>
