@@ -24,14 +24,24 @@ const Register = () => {
 
   const navigate = useNavigate();
 
+  // 회원가입
   const submitHandler = async (e) => {
     e.preventDefault();
-    await axios.post("/api/register", {
-      userId: idRef.current.value,
-      email: emailRef.current.value,
-      password: pwRef.current.value,
-    });
-    navigate("/");
+
+    await axios
+      .post("/api/register", {
+        username,
+        email,
+        password: passwordConfirm,
+      })
+      .then((res) => {
+        navigate("/login");
+      })
+      .catch((err) => {
+        alert(err.response.data);
+      });
+  };
+
   // 유효성 검사 함수
   const usernameHandler = (e) => {
     setUsername(e.target.value);
