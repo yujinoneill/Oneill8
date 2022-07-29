@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const session = require("express-session");
 
 const Place = require("./models/place");
 
@@ -11,8 +12,19 @@ db.once("open", () => {
   console.log("Database connected");
 });
 
-const app = express();
+// 로그인 정보 저장할 session 설정
+const sessionConfig = {
+  secret: "thisshouldbeabettersecret!",
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    httpOnly: true,
+    expires: Date.now() + 1000 * 60 * 60 * 24 * 7, // 세션 만료 기한 일주일
+    maxAge: 1000 * 60 * 60 * 24 * 7,
+  },
+};
 
+app.use(session(sessionConfig));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
