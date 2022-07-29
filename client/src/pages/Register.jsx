@@ -97,34 +97,89 @@ const Register = () => {
         </header>
         <main className="w-80">
           <form className="form-control w-full max-w-xs">
-            <label className="label" htmlFor="id">
+            <label className="label" htmlFor="username">
               <span className="label-text">아이디</span>
             </label>
             <input
               type="text"
-              id="id"
-              ref={idRef}
+              id="username"
+              value={username}
+              onChange={usernameHandler}
               className="input input-bordered w-full max-w-xs"
             />
+            {username.length > 0 && (
+              <span
+                className={`mt-2 text-sm text-${
+                  isUsername ? "primary" : "base-300"
+                }`}
+              >
+                {usernameMsg}
+              </span>
+            )}
             <label className="label" htmlFor="email">
               <span className="label-text">이메일</span>
             </label>
             <input
               type="email"
               id="email"
-              ref={emailRef}
+              value={email}
+              onChange={emailHandler}
               className="input input-bordered w-full max-w-xs"
             />
+            {email.length > 0 && (
+              <span
+                className={`mt-2 text-sm text-${
+                  isEmail ? "primary" : "base-300"
+                }`}
+              >
+                {emailMsg}
+              </span>
+            )}
             <label className="label" htmlFor="password">
               <span className="label-text">비밀번호</span>
             </label>
             <input
               type="password"
               id="password"
-              ref={pwRef}
+              value={password}
+              onChange={passwordHandler}
               className="input input-bordered w-full max-w-xs"
             />
-            <button className="btn btn-secondary my-5" onClick={submitHandler}>
+            {password.length > 0 && (
+              <span
+                className={`mt-2 text-sm text-${
+                  isPassword ? "primary" : "base-300"
+                }`}
+              >
+                {passwordMsg}
+              </span>
+            )}
+            <label className="label" htmlFor="passwordConfirm">
+              <span className="label-text">비밀번호 확인</span>
+            </label>
+            <input
+              type="password"
+              id="passwordConfirm"
+              value={passwordConfirm}
+              onChange={passwordConfirmHandler}
+              className="input input-bordered w-full max-w-xs"
+            />
+            {passwordConfirm.length > 0 && (
+              <span
+                className={`mt-2 text-sm text-${
+                  isPasswordConfirm ? "primary" : "base-300"
+                }`}
+              >
+                {passwordConfirmMsg}
+              </span>
+            )}
+            <button
+              className="btn btn-secondary my-5"
+              onClick={submitHandler}
+              disabled={
+                !(isUsername && isEmail && isPassword && isPasswordConfirm)
+              }
+            >
               회원가입
             </button>
             <p className="text-center">
