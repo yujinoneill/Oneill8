@@ -9,7 +9,11 @@ const Places = ({ _id, placeName, desc, image }) => {
       onClick={() => navigate(`/place/${_id}`)}
     >
       <div className="image col-span-1 rounded-lg bg-base-200 overflow-hidden">
-        <img src={image} alt={`${placeName} 대표 사진`} />
+        <img
+          className="object-cover w-full h-full"
+          src={image}
+          alt={`${placeName} 대표 사진`}
+        />
       </div>
       <div className="desc col-span-3 rounded-lg ml-3 bg-slate-50">
         <p className="place-name font-bold mb-1">{placeName}</p>
