@@ -4,15 +4,15 @@ import axios from "axios";
 import HomeMap from "../components/HomeMap";
 import Places from "../components/Places";
 
-const Home = () => {
-  const dummyData = [
-    {
-      _id: 0,
-      placeName: "우동맛집",
-      desc: "존맛탱",
-    },
-  ];
+const dummyData = [
+  {
+    _id: 0,
+    placeName: "우동맛집",
+    desc: "존맛탱",
+  },
+];
 
+const Home = () => {
   const [data, setData] = useState(dummyData);
 
   useEffect(() => {
