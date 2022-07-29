@@ -97,7 +97,7 @@ const NewPlace = () => {
   };
 
   return (
-    <div className="container xl:max-w-5xl  mx-auto">
+    <div className="container xl:max-w-5xl mx-auto">
       <div className="form flex flex-col items-center mt-6">
         <h1 className="font-bold text-2xl mb-5">새로운 맛집 등록하기</h1>
         <div className="w-[90%]">

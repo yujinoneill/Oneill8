@@ -5,13 +5,13 @@ const Places = ({ _id, placeName, desc, image }) => {
 
   return (
     <div
-      className="place-container grid grid-cols-1 lg:grid-cols-4 h-1/5 rounded-lg py-3 hover:cursor-pointer"
+      className="place-container grid grid-cols-4 h-1/5 rounded-lg py-3 hover:cursor-pointer"
       onClick={() => navigate(`/place/${_id}`)}
     >
-      <div className="image lg:col-span-1 rounded-lg bg-base-200 hidden lg:block overflow-hidden">
+      <div className="image col-span-1 rounded-lg bg-base-200 overflow-hidden">
         <img src={image} alt={`${placeName} 대표 사진`} />
       </div>
-      <div className="desc lg:col-span-3 rounded-lg lg:ml-3 bg-slate-50">
+      <div className="desc col-span-3 rounded-lg ml-3 bg-slate-50">
         <p className="place-name font-bold mb-1">{placeName}</p>
         <p className="place-desc text-xs text-base-300">{desc}</p>
       </div>
