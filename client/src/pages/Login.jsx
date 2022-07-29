@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Login = () => {
-  const idRef = useRef();
+  const emailRef = useRef();
   const pwRef = useRef();
 
   const navigate = useNavigate();
@@ -12,11 +12,20 @@ const Login = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    await axios.post("/api/login", {
-      userId: idRef.current.value,
-      password: pwRef.current.value,
-    });
-    navigate("/");
+    await axios
+      .post("/api/login", {
+        email: emailRef.current.value,
+        password: pwRef.current.value,
+      })
+      .then((res) => {
+        alert("Oneill8에 오신 걸 환영해요!");
+        const maxAge = 60 * 60 * 24 * 7; // 서버가 설정한 쿠키 만료 기간과 일치시키기
+        document.cookie = `username=${res.data}; path=/; max-age=${maxAge}`; // 모든 페이지에서 쿠키에 접근할 수 있도록 path 설정, 서버와 쿠키 만료 시점 일치시키기
+      })
+      .then(() => {
+        navigate("/");
+      })
+      .catch((err) => alert("다시 시도해 보세요!"));
   };
 
   return (
@@ -29,13 +38,13 @@ const Login = () => {
         </header>
         <main className="w-80">
           <form className="form-control w-full max-w-xs">
-            <label className="label" htmlFor="id">
-              <span className="label-text">아이디</span>
+            <label className="label" htmlFor="email">
+              <span className="label-text">이메일</span>
             </label>
             <input
-              type="text"
-              id="id"
-              ref={idRef}
+              type="email"
+              id="email"
+              ref={emailRef}
               className="input input-bordered w-full max-w-xs"
             />
             <label className="label" htmlFor="password">
