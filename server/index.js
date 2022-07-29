@@ -2,8 +2,13 @@ const express = require("express");
 const mongoose = require("mongoose");
 const session = require("express-session");
 
-const Place = require("./models/place");
+const app = express();
 
+// 모델
+const Place = require("./models/place");
+const User = require("./models/user");
+
+// MongoDB 연결
 mongoose.connect("mongodb://localhost:27017/oneill8");
 
 const db = mongoose.connection;
