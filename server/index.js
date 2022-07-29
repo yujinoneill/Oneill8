@@ -28,17 +28,49 @@ app.use(session(sessionConfig));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Passport 세팅
+const passport = require("passport");
+const LocalStrategy = require("passport-local"); // 로컬 방식으로 인증
+
+app.use(passport.initialize()); // Passport를 사용한다고 express에게 알림(passport 초기화)
+app.use(passport.session()); // session 이용해서 passport 사용
+passport.use(User.createStrategy()); // LocalStrategy 인스턴스 만듬 ( 로그인 방식을 local로 하겠다) -> createStrategy()는 이미 구성 된 passport-local의 LocalStrategy를 생성
+
+passport.serializeUser(User.serializeUser()); // 로그인에 성공했을 때 유저 정보를 session에 저장하는 기능
+passport.deserializeUser(User.deserializeUser()); // session에 있는 사용자의 식별자를 받아서 DB에 조회
+
+const isLoggedIn = (req, res, next) => {
+  if (req.isAuthenticated()) next();
+};
+
 app.get("/api", async (req, res) => {
   const places = await Place.find({});
   res.send(places);
 });
 
-app.post("/api/login", (req, res) => {
-  res.send("로그인 성공!");
+app.post("/api/login", passport.authenticate("local"), (req, res) => {
+  res.send(req.user.username);
 });
 
-app.post("/api/register", (req, res) => {
-  res.send("회원가입 완료!");
+app.post("/api/register", async (req, res) => {
+  const { username, email, password } = req.body;
+  const exUser = await User.findOne({ username });
+  const exEmail = await User.findOne({ email });
+
+  if (exUser) {
+    res.status(400).send("이미 사용 중인 아이디예요!");
+  } else if (exEmail) {
+    res.status(400).send("이미 사용 중인 이메일이에요!");
+  } else {
+    const user = await new User({ username, email });
+    User.register(user, password)
+      .then((res) => {
+        res.send("회원가입 성공!");
+      })
+      .catch((err) => {
+        res.send(err);
+      });
+  }
 });
 
 app.get("/api/place/:id", async (req, res) => {
@@ -50,6 +82,13 @@ app.post("/api/place/new", async (req, res) => {
   const place = new Place(req.body);
   await place.save();
   res.send("등록 완료!");
+});
+
+app.get("/api/logout", (req, res) => {
+  req.logout((err) => {
+    if (err) res.send(err);
+    res.send("로그아웃!");
+  });
 });
 
 app.listen(5000, () => [console.log("Listening on port 5000")]);
