@@ -1,6 +1,6 @@
+import { useState, useEffect } from "react";
+
 import axios from "axios";
-import { useState } from "react";
-import { useEffect } from "react";
 import HomeMap from "../components/HomeMap";
 import Places from "../components/Places";
 
