@@ -1,4 +1,22 @@
+import { useNavigate } from "react-router-dom";
+
+import axios from "axios";
+
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  const logoutHandler = () => {
+    const cookie = document.cookie.match("username").input; // username=로그인한아이디 문자열 분리해서 변수에 저장
+    axios
+      .get("/api/logout")
+      .then((res) => {
+        alert("로그아웃하시겠어요?");
+        document.cookie = `${cookie}; max-age=0`;
+      })
+      .then(() => navigate("/"))
+      .catch((err) => console.log(err));
+  };
+
   return (
     <nav className="navbar bg-base-100 border-b border-b-base-200 box-border">
       <div>
@@ -8,17 +26,35 @@ const Navbar = () => {
       </div>
       <div className="hidden lg:block grow">
         <ul className="menu menu-horizontal p-0 float-right">
-          <li>
-            <a href="/login">로그인</a>
-          </li>
-          <li>
-            <a
-              href="/register"
-              className="btn btn-primary text-primary-content"
-            >
-              회원가입
-            </a>
-          </li>
+          {document.cookie.match("username") ? (
+            <>
+              <li>
+                <a href="/mypage">마이 페이지</a>
+              </li>
+              <li>
+                <button
+                  className="btn btn-primary text-primary-content"
+                  onClick={logoutHandler}
+                >
+                  로그아웃
+                </button>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <a href="/login">로그인</a>
+              </li>
+              <li>
+                <a
+                  href="/register"
+                  className="btn btn-primary text-primary-content"
+                >
+                  회원가입
+                </a>
+              </li>
+            </>
+          )}
         </ul>
       </div>
       <div className="dropdown ml-auto lg:hidden clear-both">
@@ -41,15 +77,28 @@ const Navbar = () => {
           tabIndex="0"
           className="menu menu-compact dropdown-content mt-3 p-2 right-1 shadow bg-base-100 rounded-box w-40"
         >
-          <li>
-            <a href="/">지도</a>
-          </li>
-          <li>
-            <a href="/login">로그인</a>
-          </li>
-          <li>
-            <a href="/register">회원가입</a>
-          </li>
+          {document.cookie.match("username") ? (
+            <>
+              <li>
+                <a href="/mypage">마이 페이지</a>
+              </li>
+              <li>
+                <button onClick={logoutHandler}>로그아웃</button>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <a href="/">지도</a>
+              </li>
+              <li>
+                <a href="/login">로그인</a>
+              </li>
+              <li>
+                <a href="/register">회원가입</a>
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </nav>
