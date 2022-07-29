@@ -1,12 +1,26 @@
-import { useRef } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
 const Register = () => {
-  const idRef = useRef();
-  const emailRef = useRef();
-  const pwRef = useRef();
+  // 아이디, 이메일, 비밀번호, 비밀번호 확인
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+
+  // 유효성 검사 메시지
+  const [usernameMsg, setUsernameMsg] = useState();
+  const [emailMsg, setEmailMsg] = useState();
+  const [passwordMsg, setPasswordMsg] = useState();
+  const [passwordConfirmMsg, setPasswordConfirmMsg] = useState();
+
+  // 유효성 검사 통과 여부
+  const [isUsername, setIsUsername] = useState();
+  const [isEmail, setIsEmail] = useState();
+  const [isPassword, setIsPassword] = useState();
+  const [isPasswordConfirm, setIsPasswordConfirm] = useState();
 
   const navigate = useNavigate();
 
@@ -18,6 +32,59 @@ const Register = () => {
       password: pwRef.current.value,
     });
     navigate("/");
+  // 유효성 검사 함수
+  const usernameHandler = (e) => {
+    setUsername(e.target.value);
+
+    if (e.target.value.length < 4) {
+      setUsernameMsg("아이디가 너무 짧아요!");
+      setIsUsername(false);
+    } else if (e.target.value.length > 10) {
+      setUsernameMsg("아이디가 너무 길어요!");
+      setIsUsername(false);
+    } else {
+      setUsernameMsg("멋진 아이디예요!");
+      setIsUsername(true);
+    }
+  };
+
+  const emailHandler = (e) => {
+    setEmail(e.target.value);
+    const emailRegex =
+      /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+
+    if (!emailRegex.test(e.target.value)) {
+      setEmailMsg("올바른 이메일 형식이 아니에요!");
+      setIsEmail(false);
+    } else {
+      setEmailMsg("멋진 이메일이네요!");
+      setIsEmail(true);
+    }
+  };
+
+  const passwordHandler = (e) => {
+    setPassword(e.target.value);
+    const passwordRegex = /(?=.*\d)(?=.*[a-z]).{8,}/; // 영어 소문자, 숫자 포함 8자 이상 비밀번호
+
+    if (!passwordRegex.test(e.target.value)) {
+      setPasswordMsg("영어 소문자와 숫자 조합으로 8자리 이상 입력해야 해요!");
+      setIsPassword(false);
+    } else {
+      setPasswordMsg("멋진 비밀번호군요!");
+      setIsPassword(true);
+    }
+  };
+
+  const passwordConfirmHandler = (e) => {
+    setPasswordConfirm(e.target.value);
+
+    if (e.target.value !== password) {
+      setPasswordConfirmMsg("비밀번호가 일치하지 않아요!");
+      setIsPasswordConfirm(false);
+    } else {
+      setPasswordConfirmMsg("비밀번호가 일치해요!");
+      setIsPasswordConfirm(true);
+    }
   };
 
   return (
