@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import DetailMap from "../components/DetailMap";
+import { isLoggedIn, loggedInUsername } from "../utils/cookies";
 
 // Data
 const dummyData = [
@@ -95,7 +96,23 @@ const Detail = () => {
             </svg>
             {roadAddress}
           </h2>
-          <p>{desc}</p>
+          <p className="text-center">{desc}</p>
+          {isLoggedIn() && loggedInUsername() === "oneill" && (
+            <div className="card-actions justify-end">
+              <button
+                className="btn btn-sm btn-primary"
+                onClick={() => navigate(`/place/${id}/edit`)}
+              >
+                수정
+              </button>
+              <button
+                className="btn btn-sm btn-primary"
+                onClick={placeDeleteHandler}
+              >
+                삭제
+              </button>
+            </div>
+          )}
         </div>
       </div>
       <div className="flex flex-col items-center">

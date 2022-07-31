@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
+import { isLoggedIn, loggedInUsername } from "../utils/cookies";
+
 const Navbar = () => {
   const navigate = useNavigate();
 
@@ -26,7 +28,7 @@ const Navbar = () => {
       </div>
       <div className="hidden lg:block grow">
         <ul className="menu menu-horizontal p-0 float-right">
-          {document.cookie.match("username") ? (
+          {isLoggedIn() ? (
             <>
               <li>
                 <a href="/mypage">마이 페이지</a>
@@ -77,7 +79,7 @@ const Navbar = () => {
           tabIndex="0"
           className="menu menu-compact dropdown-content mt-3 p-2 right-1 shadow bg-base-100 rounded-box w-40"
         >
-          {document.cookie.match("username") ? (
+          {isLoggedIn() ? (
             <>
               <li>
                 <a href="/mypage">마이 페이지</a>
