@@ -17,4 +17,14 @@ const PlaceSchema = new Schema({
   ],
 });
 
+PlaceSchema.post("findOneAndDelete", async (doc) => {
+  if (doc) {
+    await Review.deleteMany({
+      _id: {
+        $in: doc.reviews,
+      },
+    });
+  }
+});
+
 module.exports = mongoose.model("Place", PlaceSchema);
