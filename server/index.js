@@ -7,6 +7,7 @@ const app = express();
 // 모델
 const Place = require("./models/place");
 const User = require("./models/user");
+const Review = require("./models/review");
 
 // MongoDB 연결
 mongoose.connect("mongodb://localhost:27017/oneill8");
@@ -99,21 +100,49 @@ app.post("/api/register", async (req, res) => {
   }
 });
 
+app.get("/api/mypage", isLoggedIn, async (req, res) => {
+  const reviews = await Review.find({ author: req.user._id });
+  res.send(reviews);
+});
+
 app.get("/api/place/:id", async (req, res) => {
-  const place = await Place.findById(req.params.id).populate("reviews");
+  const place = await Place.findById(req.params.id).populate({
+    path: "reviews",
+    populate: {
+      path: "author",
+    },
+  });
   res.send(place);
 });
 
 app.post("/api/place/new", async (req, res) => {
   const place = new Place(req.body);
+app.post("/api/place/:id/reviews", isLoggedIn, async (req, res) => {
+  const place = await Place.findById(req.params.id);
+  const review = new Review(req.body);
+  review.author = req.user._id;
+  place.reviews.unshift(review);
+  await review.save();
   await place.save();
-  res.send("등록 완료!");
+  res.send("리뷰 등록 완료!");
 });
+
+app.delete(
+  "/api/place/:id/reviews/:reviewId",
+  isLoggedIn,
+  isReviewAuthor,
+  async (req, res) => {
+    const { id, reviewId } = req.params;
+    await Place.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
+    await Review.findByIdAndDelete(reviewId);
+    res.send("리뷰 삭제 완료!");
+  }
+);
 
 app.get("/api/logout", (req, res) => {
   req.logout((err) => {
     if (err) res.send(err);
-    res.send("로그아웃!");
+    res.send("로그아웃 완료!");
   });
 });
 
