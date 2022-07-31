@@ -100,54 +100,7 @@ const Detail = () => {
       </div>
       <div className="flex flex-col items-center">
         <DetailMap width="90%" height="250px" {...data} />
-        <div className="review w-[90%] mb-6">
-          <div className="card w-full bg-base-100 shadow-xl">
-            <div className="card-body">
-              <h4 className="font-bold">이미 다녀왔다면 후기를 남겨 보세요!</h4>
-              {/* <div className="rating gap-1">
-                <input
-                  type="radio"
-                  name="rating-3"
-                  className="mask mask-heart bg-red-400"
-                />
-                <input
-                  type="radio"
-                  name="rating-3"
-                  className="mask mask-heart bg-orange-400"
-                />
-                <input
-                  type="radio"
-                  name="rating-3"
-                  className="mask mask-heart bg-yellow-400"
-                />
-                <input
-                  type="radio"
-                  name="rating-3"
-                  className="mask mask-heart bg-lime-400"
-                />
-                <input
-                  type="radio"
-                  name="rating-3"
-                  className="mask mask-heart bg-green-400"
-                  checked
-                />
-              </div> */}
-              <textarea
-                className="w-full textarea textarea-bordered"
-                name="review"
-                rows="3"
-              ></textarea>
-              <div className="card-actions justify-end">
-                <button className="btn btn-primary btn-sm">작성 완료</button>
-              </div>
-            </div>
-          </div>
-          {data.reviews
-            ? data.reviews.map((item) => {
-                return <ReviewBox key={item._id} {...item} />;
-              })
-            : null}
-        </div>
+        <Reviews data={data} />
       </div>
     </div>
   );
