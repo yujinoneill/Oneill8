@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+
 import DetailMap from "../components/DetailMap";
+import Reviews from "../components/Reviews";
 import { isLoggedIn, loggedInUsername } from "../utils/cookies";
 
 // Data
@@ -16,39 +18,6 @@ const dummyData = [
     desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident cupiditate perspiciatis ab nam corporis, expedita praesentium repellat totam, eum fugit, modi necessitatibus. Sequi unde veniam quisquam facere corrupti aliquid sapiente!",
   },
 ];
-
-const reviews = [
-  {
-    id: 0,
-    username: "qwerty",
-    rate: 5,
-    comment: "존맛탱!",
-  },
-  {
-    id: 1,
-    username: "asdfg",
-    rate: 3,
-    comment: "그저 그럼",
-  },
-];
-
-// Components
-const ReviewBox = ({ username, rate, comment }) => {
-  return (
-    <div className="card w-full bg-base-100 shadow-xl mt-4">
-      <div className="card-body">
-        <h2 className="card-title">{rate}</h2>
-        <p>
-          {username} : {comment}
-        </p>
-        <div className="card-actions justify-end">
-          <button className="btn btn-sm btn-primary">수정</button>
-          <button className="btn btn-sm btn-primary">삭제</button>
-        </div>
-      </div>
-    </div>
-  );
-};
 
 const Detail = () => {
   const [data, setData] = useState(dummyData);
