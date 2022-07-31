@@ -8,15 +8,15 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const logoutHandler = () => {
-    const cookie = document.cookie.match("username").input; // username=로그인한아이디 문자열 분리해서 변수에 저장
-    axios
-      .get("/api/logout")
-      .then((res) => {
-        alert("로그아웃하시겠어요?");
-        document.cookie = `${cookie}; max-age=0`;
-      })
-      .then(() => navigate("/"))
-      .catch((err) => console.log(err));
+    if (window.confirm("로그아웃하시겠어요?")) {
+      axios
+        .get("/api/logout")
+        .then((res) => {
+          document.cookie = `username=${loggedInUsername()}; max-age=0`;
+        })
+        .then(() => navigate("/"))
+        .catch((err) => console.log(err));
+    }
   };
 
   return (
