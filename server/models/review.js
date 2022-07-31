@@ -2,9 +2,13 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const ReviewSchema = new Schema({
-  username: String,
-  rate: Number,
-  comment: String,
+  author: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
+  rate: String,
+  review: String,
+  date: String,
 });
 
 module.exports = mongoose.model("Review", ReviewSchema);
