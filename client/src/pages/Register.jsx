@@ -25,20 +25,21 @@ const Register = () => {
   const navigate = useNavigate();
 
   // 회원가입
-  const submitHandler = async (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
 
-    await axios
+    axios
       .post("/api/register", {
         username,
         email,
         password: passwordConfirm,
       })
       .then((res) => {
-        navigate("/login");
+        alert("회원가입 성공!");
       })
+      .then(() => navigate("/login"))
       .catch((err) => {
-        alert(err.response.data);
+        alert(err);
       });
   };
 
