@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 const Places = ({ _id, placeName, desc, image }) => {
   const navigate = useNavigate();
