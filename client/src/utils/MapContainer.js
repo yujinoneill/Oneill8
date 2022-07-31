@@ -1,11 +1,11 @@
-export const MapContainer = () => {
+export const MapContainer = (level) => {
   const { kakao } = window;
 
   // 지도를 표시할 div
   const container = document.getElementById("map");
   const options = {
-    center: new kakao.maps.LatLng(35.16041198630581, 126.87917859023372),
-    level: 3,
+    center: new kakao.maps.LatLng(35.18085512, 126.87727356),
+    level,
   };
 
   // 지도 생성해서 반환

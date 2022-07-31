@@ -6,7 +6,7 @@ const { kakao } = window;
 const DetailMap = ({ lat, lng, placeName, width, height }) => {
   useEffect(() => {
     // 지도 생성
-    const map = MapContainer();
+    const map = MapContainer(3);
 
     // 위도와 경도를 props로 받아서 저장
     const coords1 = new kakao.maps.LatLng(lat, lng);

@@ -3,7 +3,7 @@ import { MapContainer } from "../utils/MapContainer";
 
 const HomeMap = (props) => {
   useEffect(() => {
-    MapContainer();
+    const map = MapContainer(7);
   }, []);
 
   return (
