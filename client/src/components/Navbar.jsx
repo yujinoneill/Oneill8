@@ -30,6 +30,11 @@ const Navbar = () => {
         <ul className="menu menu-horizontal p-0 float-right">
           {isLoggedIn() ? (
             <>
+              {loggedInUsername() === "oneill" && (
+                <li>
+                  <a href="/place/new">맛집 등록</a>
+                </li>
+              )}
               <li>
                 <a href="/mypage">마이 페이지</a>
               </li>
