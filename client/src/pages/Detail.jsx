@@ -26,7 +26,17 @@ const Detail = () => {
   const [desc, setDesc] = useState();
   const [image, setImage] = useState();
 
+  const navigate = useNavigate();
   const { id } = useParams();
+
+  useEffect(() => {
+    axios
+      .get(`/api/place/${id}`)
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((err) => alert(err));
+  }, [id, data]);
 
   useEffect(() => {
     setPlaceName(data.placeName);
@@ -53,7 +63,7 @@ const Detail = () => {
         </figure>
         <div className="card-body">
           <h1 className="card-title text-2xl justify-center">{placeName}</h1>
-          <h2 className="text-center">
+          <h2 className="location-logo text-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5 inline-block mr-1"
