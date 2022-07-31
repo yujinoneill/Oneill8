@@ -105,6 +105,12 @@ app.get("/api/mypage", isLoggedIn, async (req, res) => {
   res.send(reviews);
 });
 
+app.post("/api/place/new", isOneill, async (req, res) => {
+  const place = new Place(req.body);
+  await place.save();
+  res.send("맛집 등록 완료!");
+});
+
 app.get("/api/place/:id", async (req, res) => {
   const place = await Place.findById(req.params.id).populate({
     path: "reviews",
@@ -115,8 +121,18 @@ app.get("/api/place/:id", async (req, res) => {
   res.send(place);
 });
 
-app.post("/api/place/new", async (req, res) => {
-  const place = new Place(req.body);
+app.put("/api/place/:id/edit", isOneill, async (req, res) => {
+  const { id } = req.params;
+  const place = await Place.findByIdAndUpdate(id, { ...req.body });
+  res.send("맛집 수정 완료!");
+});
+
+app.delete("/api/place/:id", isOneill, async (req, res) => {
+  const { id } = req.params;
+  await Place.findByIdAndDelete(id);
+  res.send("맛집 삭제 완료!");
+});
+
 app.post("/api/place/:id/reviews", isLoggedIn, async (req, res) => {
   const place = await Place.findById(req.params.id);
   const review = new Review(req.body);
