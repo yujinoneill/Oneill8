@@ -8,6 +8,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Detail from "./pages/Detail";
 import NewPlace from "./pages/NewPlace";
+import EditPlace from "./pages/EditPlace";
+import MyPage from "./pages/MyPage";
 
 export default function App() {
   return (
@@ -17,8 +19,10 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/mypage" element={<MyPage />} />
         <Route path="/place/:id" element={<Detail />} />
         <Route path="/place/new" element={<NewPlace />} />
+        <Route path="/place/:id/edit" element={<EditPlace />} />
       </Routes>
     </BrowserRouter>
   );
