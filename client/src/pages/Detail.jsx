@@ -66,12 +66,15 @@ const Detail = () => {
     setImage(data.image);
   }, [data.placeName, data.roadAddress, data.desc, data.image]);
 
-  useEffect(() => {
-    axios
-      .get(`/api/place/${id}`)
-      .then((res) => setData(res.data))
-      .catch((err) => console.log(err));
-  }, [id, data]);
+  const placeDeleteHandler = () => {
+    if (window.confirm("맛집을 삭제하시겠어요?")) {
+      axios
+        .delete(`/api/place/${id}`)
+        .then((res) => alert(res.data))
+        .then(() => navigate("/"))
+        .catch((err) => alert(err));
+    }
+  };
 
   return (
     <div className="container xl:max-w-7xl grid grid-cols-1 lg:grid-cols-2 mx-auto">
