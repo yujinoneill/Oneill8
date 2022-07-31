@@ -44,8 +44,29 @@ passport.use(User.createStrategy()); // LocalStrategy 인스턴스 만듬 ( 로�
 passport.serializeUser(User.serializeUser()); // 로그인에 성공했을 때 유저 정보를 session에 저장하는 기능
 passport.deserializeUser(User.deserializeUser()); // session에 있는 사용자의 식별자를 받아서 DB에 조회
 
+// 미들웨어
 const isLoggedIn = (req, res, next) => {
-  if (req.isAuthenticated()) next();
+  if (!req.isAuthenticated()) {
+    return res.status(401).send("로그인이 필요해요!");
+  }
+  next();
+};
+
+const isOneill = (req, res, next) => {
+  if (!req.user.username === "oneill") {
+    return res.status(403).send("관리자 권한이 필요해요!");
+  }
+  next();
+};
+
+const isReviewAuthor = async (req, res, next) => {
+  const { id, reviewId } = req.params;
+  const review = await Review.findById(reviewId);
+
+  if (review.author !== req.user._id) {
+    return res.status(403).send("리뷰 작성자만이 할 수 있는 일이에요!");
+  }
+  next();
 };
 
 app.get("/api", async (req, res) => {
