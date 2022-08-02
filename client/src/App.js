@@ -11,6 +11,10 @@ import NewPlace from "./pages/place/NewPlace";
 import EditPlace from "./pages/place/EditPlace";
 import MyPage from "./pages/user/MyPage";
 
+// Routes
+import AdminRoute from "./routes/AdminRoute";
+import LoginRoute from "./routes/LoginRoute";
+import GuestRoute from "./routes/GuestRoute";
 import Home from "./pages/Home";
 
 export default function App() {
@@ -18,13 +22,27 @@ export default function App() {
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/mypage" element={<MyPage />} />
+        {/* 모두에게 열려있는 페이지 */}
+        <Route path="/place" element={<Places />} />
         <Route path="/place/:id" element={<Detail />} />
-        <Route path="/place/new" element={<NewPlace />} />
-        <Route path="/place/:id/edit" element={<EditPlace />} />
+
+        {/* 게스트에게만 열려있는 페이지 */}
+        <Route element={<GuestRoute />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Route>
+
+        {/* 로그인이 필요한 페이지 */}
+        <Route element={<LoginRoute />}>
+          <Route path="/mypage" element={<MyPage />} />
+        </Route>
+
+        {/* 관리자 권한이 필요한 페이지 */}
+        <Route element={<AdminRoute />}>
+          <Route path="/place/new" element={<NewPlace />} />
+          <Route path="/place/:id/edit" element={<EditPlace />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
