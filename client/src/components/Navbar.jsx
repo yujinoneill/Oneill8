@@ -22,7 +22,7 @@ const Navbar = () => {
   return (
     <nav className="navbar bg-base-100 border-b border-b-base-200 box-border">
       <div>
-        <a href="/" className="btn btn-ghost normal-case text-xl">
+        <a href="/place" className="btn btn-ghost normal-case text-xl">
           🍽️ Oneill8
         </a>
       </div>
@@ -86,6 +86,11 @@ const Navbar = () => {
         >
           {isLoggedIn() ? (
             <>
+              {loggedInUsername() === "oneill" && (
+                <li>
+                  <a href="/place/new">맛집 등록</a>
+                </li>
+              )}
               <li>
                 <a href="/mypage">마이 페이지</a>
               </li>
@@ -96,7 +101,7 @@ const Navbar = () => {
           ) : (
             <>
               <li>
-                <a href="/">지도</a>
+                <a href="/place">지도</a>
               </li>
               <li>
                 <a href="/login">로그인</a>

@@ -23,7 +23,7 @@ const Login = () => {
         document.cookie = `username=${res.data}; path=/; max-age=${maxAge}`; // 모든 페이지에서 쿠키에 접근할 수 있도록 path 설정, 서버와 쿠키 만료 시점 일치시키기
       })
       .then(() => {
-        navigate("/");
+        navigate("/place");
       })
       .catch((err) => alert("다시 시도해 보세요!"));
   };
