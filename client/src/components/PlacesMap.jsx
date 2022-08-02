@@ -4,7 +4,7 @@ import { MapContainer } from "../utils/MapContainer";
 
 const { kakao } = window;
 
-const HomeMap = ({ height, data }) => {
+const PlacesMap = ({ height, data }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -62,4 +62,4 @@ const HomeMap = ({ height, data }) => {
   );
 };
 
-export default HomeMap;
+export default PlacesMap;

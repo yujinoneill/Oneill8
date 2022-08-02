@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-const Places = ({ _id, placeName, desc, image }) => {
+const Place = ({ _id, placeName, desc, image }) => {
   const navigate = useNavigate();
 
   return (
@@ -23,4 +23,4 @@ const Places = ({ _id, placeName, desc, image }) => {
   );
 };
 
-export default Places;
+export default Place;
