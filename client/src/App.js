@@ -3,13 +3,15 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 
 // Pages
+import Places from "./pages/place/Places";
+import Login from "./pages/user/Login";
+import Register from "./pages/user/Register";
+import Detail from "./pages/place/Detail";
+import NewPlace from "./pages/place/NewPlace";
+import EditPlace from "./pages/place/EditPlace";
+import MyPage from "./pages/user/MyPage";
+
 import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Detail from "./pages/Detail";
-import NewPlace from "./pages/NewPlace";
-import EditPlace from "./pages/EditPlace";
-import MyPage from "./pages/MyPage";
 
 export default function App() {
   return (

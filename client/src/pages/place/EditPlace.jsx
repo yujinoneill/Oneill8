@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+
 import axios from "axios";
 
-import PlaceEditor from "../components/PlaceEditor";
-import { useParams } from "react-router-dom";
+import PlaceEditor from "../../components/PlaceEditor";
 
 const EditPlace = () => {
   const [originData, setOriginData] = useState();

@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import DetailMap from "../components/DetailMap";
-import Reviews from "../components/Reviews";
-import { isLoggedIn, loggedInUsername } from "../utils/cookies";
+import DetailMap from "../../components/DetailMap";
+import Reviews from "../../components/Reviews";
+import { isLoggedIn, loggedInUsername } from "../../utils/cookies";
 
 // Data
 const dummyData = [

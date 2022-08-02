@@ -1,4 +1,4 @@
-import PlaceEditor from "../components/PlaceEditor";
+import PlaceEditor from "../../components/PlaceEditor";
 
 const NewPlace = () => {
   return <PlaceEditor />;
