@@ -9,6 +9,11 @@ const helmet = require("helmet");
 const MongoStore = require("connect-mongo");
 const ExpressError = require("./error/ExpressError");
 
+// 환경 변수
+const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/oneill8";
+const secret = process.env.SECRET || "thisshouldbeabettersecret!";
+const port = process.env.PORT || 5000;
+
 const app = express();
 
 // 라우터
@@ -20,7 +25,7 @@ const userRoutes = require("./routes/user");
 const User = require("./models/user");
 
 // MongoDB 연결
-mongoose.connect("mongodb://localhost:27017/oneill8");
+mongoose.connect(dbUrl);
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
@@ -30,11 +35,12 @@ db.once("open", () => {
 
 // 로그인 정보 저장할 session 설정
 const sessionConfig = {
-  secret: "thisshouldbeabettersecret!",
+  secret,
   resave: false,
   saveUninitialized: true,
   cookie: {
     httpOnly: true,
+    // secure: true, // 웹브라우저와 웹서버가 https로 통신하는 경우만 웹브라우저가 쿠키를 서버로 전송
     expires: Date.now() + 1000 * 60 * 60 * 24 * 7, // 세션 만료 기한 일주일
     maxAge: 1000 * 60 * 60 * 24 * 7,
   },
