@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const helmet = require("helmet");
 const MongoStore = require("connect-mongo");
+const ExpressError = require("./error/ExpressError");
 
 const app = express();
 
@@ -87,8 +88,14 @@ app.get("/", (req, res) => {
   res.render("Home");
 });
 
-app.all("*", (req, res) => {
-  res.send(new ExpressError("Page Not Found", 404));
+app.all("*", (req, res, next) => {
+  next(new ExpressError("요청된 URI가 존재하지 않아요!", 404));
 });
 
-app.listen(5000, () => [console.log("Listening on port 5000")]);
+app.use((err, req, res, next) => {
+  const { statusCode = 500 } = err;
+  if (!err.message) err.message = "문제가 생겼어요! 관리자에게 문의하세요!";
+  res.status(statusCode).send(err);
+});
+
+app.listen(port, () => [console.log(`Listening on port ${port}`)]);
