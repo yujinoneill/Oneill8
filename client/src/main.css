@@ -43,6 +43,11 @@ div {
   @apply fixed top-0 bottom-0 left-0 right-0 z-10 bg-base-100;
 }
 
+/* 404 */
+.background-error {
+  @apply fixed top-0 bottom-0 left-0 right-0 z-10 bg-error;
+}
+
 /* Home */
 .fade-in-out {
   @apply fixed top-0 bottom-0 left-0 right-0;

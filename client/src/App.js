@@ -16,6 +16,7 @@ import AdminRoute from "./routes/AdminRoute";
 import LoginRoute from "./routes/LoginRoute";
 import GuestRoute from "./routes/GuestRoute";
 import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
 
 export default function App() {
   return (
@@ -43,6 +44,9 @@ export default function App() {
           <Route path="/place/new" element={<NewPlace />} />
           <Route path="/place/:id/edit" element={<EditPlace />} />
         </Route>
+
+        {/* 404 페이지 */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
