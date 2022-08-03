@@ -40,7 +40,7 @@ const sessionConfig = {
   saveUninitialized: true,
   cookie: {
     httpOnly: true,
-    // secure: true, // 웹브라우저와 웹서버가 https로 통신하는 경우만 웹브라우저가 쿠키를 서버로 전송
+    secure: true, // 웹브라우저와 웹서버가 https로 통신하는 경우만 웹브라우저가 쿠키를 서버로 전송
     expires: Date.now() + 1000 * 60 * 60 * 24 * 7, // 세션 만료 기한 일주일
     maxAge: 1000 * 60 * 60 * 24 * 7,
   },
@@ -61,10 +61,15 @@ const cspOptions = {
     // unsafe-inline: 인라인 자바스크립트, 인라인 스타일을 허용
 
     // 카카오 API 도메인과 인라인 스크립트 허용
-    "script-src": ["self", "dapi.kakao.com", "'unsafe-inline'"],
+    "script-src": ["self", "https://dapi.kakao.com", "'unsafe-inline'"],
 
     // 네이버 라이브 검색에서 이미지 소스 허용
-    "img-src": ["'self'", "data:", "*.pstatic.net"],
+    "img-src": [
+      "'self'",
+      "data:",
+      "https://search.pstatic.net",
+      "https://images.unsplash.com",
+    ],
 
     // 소스에 https와 http 허용
     "base-uri": ["/", "http:"],
