@@ -118,7 +118,7 @@ const PlaceEditor = ({ isEdit, originData }) => {
             lng,
           })
           .then((res) => alert(res.data))
-          .then(() => navigate("/"))
+          .then(() => navigate("/place"))
           .catch((err) => alert(err));
       }
     }

@@ -5,7 +5,7 @@ const LoginRoute = () => {
   return isLoggedIn() ? (
     <Outlet />
   ) : (
-    <Navigate to="/" {...alert("로그인이 필요해요!")} />
+    <Navigate to="/login" {...alert("로그인이 필요해요!")} />
   );
 };
 
