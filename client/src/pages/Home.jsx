@@ -18,10 +18,7 @@ const Home = () => {
             <br />
             피드백은 언제나 환영합니다 :)
           </p>
-          <button
-            className="btn btn-primary mt-3"
-            onClick={() => navigate("/place")}
-          >
+          <button className="btn glass mt-5" onClick={() => navigate("/place")}>
             구경하기
           </button>
         </div>
