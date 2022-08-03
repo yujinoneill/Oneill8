@@ -35,7 +35,9 @@ const Detail = () => {
       .then((res) => {
         setData(res.data);
       })
-      .catch((err) => alert(err));
+      .catch(() => {
+        navigate("/error");
+      });
   }, [id, data]);
 
   useEffect(() => {
