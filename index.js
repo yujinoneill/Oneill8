@@ -61,9 +61,9 @@ const cspOptions = {
     // unsafe-inline: 인라인 자바스크립트, 인라인 스타일을 허용
 
     // 카카오 API 도메인과 인라인 스크립트 허용
-    "script-src": ["self", "https://dapi.kakao.com", "'unsafe-inline'"],
+    "script-src": ["'self'", "https://dapi.kakao.com", "'unsafe-inline'"],
 
-    // 네이버 라이브 검색에서 이미지 소스 허용
+    // 네이버 라이브 검색과 Unsplash에서 이미지 소스 허용
     "img-src": [
       "'self'",
       "data:",
