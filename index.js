@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const helmet = require("helmet");
 const MongoStore = require("connect-mongo");
-const ExpressError = require("./error/ExpressError");
+const path = require("path");
 
 // 환경 변수
 const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/oneill8";
