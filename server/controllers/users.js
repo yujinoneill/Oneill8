@@ -16,13 +16,8 @@ module.exports.register = async (req, res) => {
     res.status(400).send("이미 사용 중인 이메일이에요!");
   } else {
     const user = await new User({ username, email });
-    User.register(user, password)
-      .then((res) => {
-        res.send("회원가입 성공!");
-      })
-      .catch((err) => {
-        res.send(err);
-      });
+    await User.register(user, password);
+    res.send("회원가입 성공!");
   }
 };
 

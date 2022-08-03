@@ -9,10 +9,10 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const submitHandler = async (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
 
-    await axios
+    axios
       .post("/api/login", {
         email: emailRef.current.value,
         password: pwRef.current.value,

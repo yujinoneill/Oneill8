@@ -14,7 +14,7 @@ const ReviewBox = ({ placeId, _id, author, rate, review, date }) => {
       axios
         .delete(`/api/place/${placeId}/reviews/${reviewId}`)
         .then((res) => alert(res.data))
-        .catch((err) => alert(err.response.data));
+        .catch((err) => alert(err));
     }
   };
 

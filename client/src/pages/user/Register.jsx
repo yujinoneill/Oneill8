@@ -38,9 +38,7 @@ const Register = () => {
         alert("회원가입 성공!");
       })
       .then(() => navigate("/login"))
-      .catch((err) => {
-        alert(err);
-      });
+      .catch((err) => alert(err));
   };
 
   // 유효성 검사 함수

@@ -11,7 +11,7 @@ const Navbar = () => {
     if (window.confirm("로그아웃하시겠어요?")) {
       axios
         .get("/api/logout")
-        .then((res) => {
+        .then(() => {
           document.cookie = `username=${loggedInUsername()}; max-age=0`;
         })
         .then(() => navigate("/"))
@@ -23,7 +23,7 @@ const Navbar = () => {
     <nav className="navbar bg-base-100 border-b border-b-base-200 box-border">
       <div>
         <a href="/place" className="btn btn-ghost normal-case text-xl">
-          🍽️ Oneill8
+          Oneill8
         </a>
       </div>
       <div className="hidden lg:block grow">
@@ -100,9 +100,6 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <li>
-                <a href="/place">지도</a>
-              </li>
               <li>
                 <a href="/login">로그인</a>
               </li>
