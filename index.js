@@ -74,7 +74,7 @@ const cspOptions = {
 };
 
 if (process.env.NODE_ENV === "production") {
-  app.use(helmet({ contentSecurityPolicy: cspOptions })); // 기본 설정은 helmet()
+  app.use(helmet({ contentSecurityPolicy: false }));
 }
 
 // Passport 세팅
