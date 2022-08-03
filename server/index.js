@@ -1,6 +1,12 @@
+if (process.env.NODE_ENV === "production") {
+  require("dotenv").config();
+}
+
 const express = require("express");
 const mongoose = require("mongoose");
 const session = require("express-session");
+const helmet = require("helmet");
+const MongoStore = require("connect-mongo");
 
 const app = express();
 
@@ -31,11 +37,36 @@ const sessionConfig = {
     expires: Date.now() + 1000 * 60 * 60 * 24 * 7, // 세션 만료 기한 일주일
     maxAge: 1000 * 60 * 60 * 24 * 7,
   },
+  store: MongoStore.create({ mongoUrl: dbUrl }),
 };
 
 app.use(session(sessionConfig));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Helmet 세팅
+const cspOptions = {
+  direvtives: {
+    // 헬멧 기본 옵션 가져오기
+    ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+
+    // self: 현재 출처에서는 허용하지만 하위 도메인에서는 허용되지 않음
+    // unsafe-inline: 인라인 자바스크립트, 인라인 스타일을 허용
+
+    // 카카오 API 도메인과 인라인 스크립트 허용
+    "script-src": ["self", "dapi.kakao.com", "'unsafe-inline'"],
+
+    // 네이버 라이브 검색에서 이미지 소스 허용
+    "img-src": ["'self'", "data:", "*.pstatic.net"],
+
+    // 소스에 https와 http 허용
+    "base-uri": ["/", "http:"],
+  },
+};
+
+if (process.env.NODE_ENV === "production") {
+  app.use(helmet({ contentSecurityPolicy: cspOptions })); // 기본 설정은 helmet()
+}
 
 // Passport 세팅
 const passport = require("passport");
