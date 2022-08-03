@@ -90,18 +90,21 @@ app.use("/api", userRoutes);
 app.use("/api/place", placeRoutes);
 app.use("/api/place/:id/reviews", reviewRoutes);
 
-app.get("/", (req, res) => {
-  res.render("Home");
+// 리액트로 빌드된 파일 보여주기
+app.use(express.static(path.join(__dirname, "/client/build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "/client/build", "index.html"));
 });
 
-app.all("*", (req, res, next) => {
-  next(new ExpressError("요청된 URI가 존재하지 않아요!", 404));
-});
+// app.all("*", (req, res, next) => {
+//   next(new ExpressError("요청된 URI가 존재하지 않아요!", 404));
+// });
 
-app.use((err, req, res, next) => {
-  const { statusCode = 500 } = err;
-  if (!err.message) err.message = "문제가 생겼어요! 관리자에게 문의하세요!";
-  res.status(statusCode).send(err);
-});
+// app.use((err, req, res, next) => {
+//   const { statusCode = 500 } = err;
+//   if (!err.message) err.message = "문제가 생겼어요! 관리자에게 문의하세요!";
+//   res.status(statusCode).send(err);
+// });
 
 app.listen(port, () => [console.log(`Listening on port ${port}`)]);
