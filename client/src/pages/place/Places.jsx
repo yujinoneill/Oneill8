@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import axios from "axios";
+import { axiosInstance } from "../../config";
 import PlacesMap from "../../components/PlacesMap";
 import Place from "../../components/Place";
 
@@ -16,8 +16,8 @@ const Plcaes = () => {
   const [data, setData] = useState(dummyData);
 
   useEffect(() => {
-    axios
-      .get("/api/place")
+    axiosInstance
+      .get("/place")
       .then((res) => setData(res.data))
       .catch((err) => console.log(err));
   }, []);

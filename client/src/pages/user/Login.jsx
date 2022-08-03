@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
-import axios from "axios";
+import { axiosInstance } from "../../config";
 import LoginDesign from "../../components/LoginDesign";
 
 const Login = () => {
@@ -13,8 +13,8 @@ const Login = () => {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    axios
-      .post("/api/login", {
+    axiosInstance
+      .post("/login", {
         email: emailRef.current.value,
         password: pwRef.current.value,
       })

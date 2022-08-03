@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import axios from "axios";
+import { axiosInstance } from "../../config";
 
 import PlaceEditor from "../../components/PlaceEditor";
 
@@ -12,8 +12,8 @@ const EditPlace = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    axios
-      .get(`/api/place/${id}`)
+    axiosInstance
+      .get(`/place/${id}`)
       .then((res) => setOriginData(res.data))
       .catch(() => navigate("/error"));
   }, [id]);

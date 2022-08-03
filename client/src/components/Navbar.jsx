@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import axios from "axios";
+import { axiosInstance } from "../config";
 
 import { isLoggedIn, loggedInUsername } from "../utils/cookies";
 
@@ -9,8 +9,8 @@ const Navbar = () => {
 
   const logoutHandler = () => {
     if (window.confirm("로그아웃하시겠어요?")) {
-      axios
-        .get("/api/logout")
+      axiosInstance
+        .get("/logout")
         .then(() => {
           document.cookie = `username=${loggedInUsername()}; max-age=0`;
         })

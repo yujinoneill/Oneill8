@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
+
+import { axiosInstance } from "../../config";
 
 import DetailMap from "../../components/DetailMap";
 import Reviews from "../../components/Reviews";
@@ -30,8 +31,8 @@ const Detail = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    axios
-      .get(`/api/place/${id}`)
+    axiosInstance
+      .get(`/place/${id}`)
       .then((res) => {
         setData(res.data);
       })
@@ -49,8 +50,8 @@ const Detail = () => {
 
   const placeDeleteHandler = () => {
     if (window.confirm("맛집을 삭제하시겠어요?")) {
-      axios
-        .delete(`/api/place/${id}`)
+      axiosInstance
+        .delete(`/place/${id}`)
         .then((res) => alert(res.data))
         .then(() => navigate("/"))
         .catch((err) => alert(err));

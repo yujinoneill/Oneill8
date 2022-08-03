@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import axios from "axios";
+import { axiosInstance } from "../config";
 import { MapContainer } from "../utils/MapContainer";
 
 const { kakao } = window;
@@ -95,8 +95,8 @@ const PlaceEditor = ({ isEdit, originData }) => {
       window.confirm(isEdit ? "맛집 정보를 수정할까요?" : "맛집을 등록할까요?")
     ) {
       if (isEdit && originData) {
-        axios
-          .put(`/api/place/${id}/edit`, {
+        axiosInstance
+          .put(`/place/${id}/edit`, {
             placeName,
             roadAddress,
             desc,
@@ -108,8 +108,8 @@ const PlaceEditor = ({ isEdit, originData }) => {
           .then(() => navigate(`/place/${id}`))
           .catch((err) => alert(err));
       } else {
-        axios
-          .post("/api/place/new", {
+        axiosInstance
+          .post("/place/new", {
             placeName,
             roadAddress,
             desc,
