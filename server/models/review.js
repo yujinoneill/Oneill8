@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const ReviewSchema = new Schema({
+  place: {
+    type: Schema.Types.ObjectId,
+    ref: "Place",
+  },
   author: {
     type: Schema.Types.ObjectId,
     ref: "User",

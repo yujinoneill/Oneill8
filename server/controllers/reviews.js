@@ -5,6 +5,7 @@ module.exports.createReview = async (req, res) => {
   const place = await Place.findById(req.params.id);
   const review = new Review(req.body);
   review.author = req.user._id;
+  review.place = req.params.id;
   place.reviews.unshift(review);
   await review.save();
   await place.save();
