@@ -53,38 +53,23 @@ app.use(express.urlencoded({ extended: true }));
 
 // Helmet 세팅
 const cspOptions = {
-  direvtives: {
+  directives: {
     // 헬멧 기본 옵션 가져오기
     ...helmet.contentSecurityPolicy.getDefaultDirectives(),
 
     // self: 현재 출처에서는 허용하지만 하위 도메인에서는 허용되지 않음
     // unsafe-inline: 인라인 자바스크립트, 인라인 스타일을 허용
 
-    "default-src": [
-      "'self'",
-      "https://*.kakao.com",
-      "https://*.pstatic.net",
-      "https://*.unsplash.com",
-    ],
+    "default-src": ["'self'", "*.kakao.com", "*.pstatic.net", "*.unsplash.com"],
 
     // 카카오 API 도메인과 인라인 스크립트, eval 허용
-    "script-src": [
-      "'self'",
-      "https://*.kakao.com",
-      "'unsafe-inline'",
-      "'unsafe-eval'",
-    ],
+    "script-src": ["'self'", "*.kakao.com", "'unsafe-inline'", "'unsafe-eval'"],
 
     // 네이버 라이브 검색과 Unsplash에서 이미지 소스 허용
-    "img-src": [
-      "'self'",
-      "data:",
-      "https://*.pstatic.net",
-      "https://*.unsplash.com",
-    ],
+    "img-src": ["'self'", "data:", "*.pstatic.net", "*.unsplash.com"],
 
     // 소스에 https와 http 허용
-    // "base-uri": ["/", "http:"],
+    "base-uri": ["/", "http:"],
   },
 };
 
