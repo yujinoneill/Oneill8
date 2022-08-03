@@ -62,8 +62,8 @@ const cspOptions = {
 
     "default-src": ["'self'", "*.kakao.com", "*.pstatic.net", "*.unsplash.com"],
 
-    // 카카오 API 도메인과 인라인 스크립트 허용
-    "script-src": ["'self'", "*.kakao.com", "'unsafe-inline'"],
+    // 카카오 API 도메인과 인라인 스크립트, eval 허용
+    "script-src": ["'self'", "*.kakao.com", "'unsafe-inline'", "'unsafe-eval'"],
 
     // 네이버 라이브 검색과 Unsplash에서 이미지 소스 허용
     "img-src": ["'self'", "data:", "*.pstatic.net", "*.unsplash.com"],
