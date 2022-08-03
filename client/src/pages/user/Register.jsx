@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
+import LoginDesign from "../../components/LoginDesign";
 
 const Register = () => {
   // 아이디, 이메일, 비밀번호, 비밀번호 확인
@@ -97,118 +98,106 @@ const Register = () => {
   };
 
   return (
-    <div className="background grid grid-cols-2">
-      <section className="content flex flex-col justify-center items-center h-screen col-span-2 lg:col-span-1">
-        <header className="font-bold text-center mb-5">
-          <a href="/" className="text-2xl">
-            Oneill8
-          </a>
-        </header>
-        <main className="w-80">
-          <form className="form-control w-full max-w-xs">
-            <label className="label" htmlFor="username">
-              <span className="label-text">아이디</span>
-            </label>
-            <input
-              type="text"
-              id="username"
-              value={username}
-              onChange={usernameHandler}
-              className="input input-bordered w-full max-w-xs"
-            />
-            {username.length > 0 && (
-              <span
-                className={`mt-2 text-sm text-${
-                  isUsername ? "primary" : "base-300"
-                }`}
-              >
-                {usernameMsg}
-              </span>
-            )}
-            <label className="label" htmlFor="email">
-              <span className="label-text">이메일</span>
-            </label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={emailHandler}
-              className="input input-bordered w-full max-w-xs"
-            />
-            {email.length > 0 && (
-              <span
-                className={`mt-2 text-sm text-${
-                  isEmail ? "primary" : "base-300"
-                }`}
-              >
-                {emailMsg}
-              </span>
-            )}
-            <label className="label" htmlFor="password">
-              <span className="label-text">비밀번호</span>
-            </label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={passwordHandler}
-              className="input input-bordered w-full max-w-xs"
-            />
-            {password.length > 0 && (
-              <span
-                className={`mt-2 text-sm text-${
-                  isPassword ? "primary" : "base-300"
-                }`}
-              >
-                {passwordMsg}
-              </span>
-            )}
-            <label className="label" htmlFor="passwordConfirm">
-              <span className="label-text">비밀번호 확인</span>
-            </label>
-            <input
-              type="password"
-              id="passwordConfirm"
-              value={passwordConfirm}
-              onChange={passwordConfirmHandler}
-              className="input input-bordered w-full max-w-xs"
-            />
-            {passwordConfirm.length > 0 && (
-              <span
-                className={`mt-2 text-sm text-${
-                  isPasswordConfirm ? "primary" : "base-300"
-                }`}
-              >
-                {passwordConfirmMsg}
-              </span>
-            )}
-            <button
-              className="btn btn-secondary my-5"
-              onClick={submitHandler}
-              disabled={
-                !(isUsername && isEmail && isPassword && isPasswordConfirm)
-              }
-            >
-              회원가입
-            </button>
-            <p className="text-center">
-              이미 회원이신가요?{" "}
-              <a href="/login" className="text-secondary">
-                로그인
-              </a>
-            </p>
-          </form>
-        </main>
-      </section>
-      <section className="sidebar bg-secondary hidden lg:block">
-        <div className="art-work flex justify-center items-center h-screen">
-          <img
-            src={process.env.PUBLIC_URL + `/assets/Cake_Isometric.svg`}
-            alt="Cake illust"
+    <LoginDesign
+      form={
+        <form className="form-control w-full max-w-xs">
+          <label className="label" htmlFor="username">
+            <span className="label-text">아이디</span>
+          </label>
+          <input
+            type="text"
+            id="username"
+            value={username}
+            onChange={usernameHandler}
+            className="input input-bordered w-full max-w-xs"
           />
-        </div>
-      </section>
-    </div>
+          {username.length > 0 && (
+            <span
+              className={`mt-2 text-sm text-${
+                isUsername ? "primary" : "base-300"
+              }`}
+            >
+              {usernameMsg}
+            </span>
+          )}
+          <label className="label" htmlFor="email">
+            <span className="label-text">이메일</span>
+          </label>
+          <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={emailHandler}
+            className="input input-bordered w-full max-w-xs"
+          />
+          {email.length > 0 && (
+            <span
+              className={`mt-2 text-sm text-${
+                isEmail ? "primary" : "base-300"
+              }`}
+            >
+              {emailMsg}
+            </span>
+          )}
+          <label className="label" htmlFor="password">
+            <span className="label-text">비밀번호</span>
+          </label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={passwordHandler}
+            className="input input-bordered w-full max-w-xs"
+          />
+          {password.length > 0 && (
+            <span
+              className={`mt-2 text-sm text-${
+                isPassword ? "primary" : "base-300"
+              }`}
+            >
+              {passwordMsg}
+            </span>
+          )}
+          <label className="label" htmlFor="passwordConfirm">
+            <span className="label-text">비밀번호 확인</span>
+          </label>
+          <input
+            type="password"
+            id="passwordConfirm"
+            value={passwordConfirm}
+            onChange={passwordConfirmHandler}
+            className="input input-bordered w-full max-w-xs"
+          />
+          {passwordConfirm.length > 0 && (
+            <span
+              className={`mt-2 text-sm text-${
+                isPasswordConfirm ? "primary" : "base-300"
+              }`}
+            >
+              {passwordConfirmMsg}
+            </span>
+          )}
+          <button
+            className="btn btn-secondary my-5"
+            onClick={submitHandler}
+            disabled={
+              !(isUsername && isEmail && isPassword && isPasswordConfirm)
+            }
+          >
+            회원가입
+          </button>
+          <p className="text-center">
+            이미 회원이신가요?{" "}
+            <a href="/login" className="text-secondary">
+              로그인
+            </a>
+          </p>
+        </form>
+      }
+      bgColor="bg-secondary"
+      svgName="Cake_Isometric"
+      imgAlt="Cake illust"
+    />
   );
 };
 

@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
+import LoginDesign from "../../components/LoginDesign";
 
 const Login = () => {
   const emailRef = useRef();
@@ -25,58 +26,46 @@ const Login = () => {
       .then(() => {
         navigate("/place");
       })
-      .catch((err) => alert("다시 시도해 보세요!"));
+      .catch(() => alert("다시 시도해 보세요!"));
   };
 
   return (
-    <div className="background grid grid-cols-2">
-      <section className="content flex flex-col justify-center items-center h-screen col-span-2 lg:col-span-1">
-        <header className="font-bold text-center mb-5">
-          <a href="/" className="text-2xl">
-            Oneill8
-          </a>
-        </header>
-        <main className="w-80">
-          <form className="form-control w-full max-w-xs">
-            <label className="label" htmlFor="email">
-              <span className="label-text">이메일</span>
-            </label>
-            <input
-              type="email"
-              id="email"
-              ref={emailRef}
-              className="input input-bordered w-full max-w-xs"
-            />
-            <label className="label" htmlFor="password">
-              <span className="label-text">비밀번호</span>
-            </label>
-            <input
-              type="password"
-              id="password"
-              ref={pwRef}
-              className="input input-bordered w-full max-w-xs"
-            />
-            <button className="btn btn-primary my-5" onClick={submitHandler}>
-              로그인
-            </button>
-            <p className="text-center">
-              아직 계정이 없나요?{" "}
-              <a href="/register" className="text-primary">
-                회원가입
-              </a>
-            </p>
-          </form>
-        </main>
-      </section>
-      <section className="sidebar bg-primary hidden lg:block">
-        <div className="art-work flex justify-center items-center h-screen">
-          <img
-            src={process.env.PUBLIC_URL + `/assets/Noodles _Isometric.svg`}
-            alt="Noodle illust"
+    <LoginDesign
+      form={
+        <form className="form-control w-full max-w-xs">
+          <label className="label" htmlFor="email">
+            <span className="label-text">이메일</span>
+          </label>
+          <input
+            type="email"
+            id="email"
+            ref={emailRef}
+            className="input input-bordered w-full max-w-xs"
           />
-        </div>
-      </section>
-    </div>
+          <label className="label" htmlFor="password">
+            <span className="label-text">비밀번호</span>
+          </label>
+          <input
+            type="password"
+            id="password"
+            ref={pwRef}
+            className="input input-bordered w-full max-w-xs"
+          />
+          <button className="btn btn-primary my-5" onClick={submitHandler}>
+            로그인
+          </button>
+          <p className="text-center">
+            아직 계정이 없나요?{" "}
+            <a href="/register" className="text-primary">
+              회원가입
+            </a>
+          </p>
+        </form>
+      }
+      bgColor="bg-primary"
+      svgName="Noodles _Isometric"
+      imgAlt="Noodle illust"
+    />
   );
 };
 
