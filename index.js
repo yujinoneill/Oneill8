@@ -59,6 +59,7 @@ const cspOptions = {
 
     // self: 현재 출처에서는 허용하지만 하위 도메인에서는 허용되지 않음
     // unsafe-inline: 인라인 자바스크립트, 인라인 스타일을 허용
+    // unsafe-eval: eval 같은 텍스트-자바스크립트 메커니즘을 허용
 
     "default-src": ["'self'", "*.kakao.com", "*.pstatic.net", "*.unsplash.com"],
 
