@@ -61,10 +61,22 @@ const cspOptions = {
     // unsafe-inline: 인라인 자바스크립트, 인라인 스타일을 허용
     // unsafe-eval: eval 같은 텍스트-자바스크립트 메커니즘을 허용
 
-    "default-src": ["'self'", "*.kakao.com", "*.pstatic.net", "*.unsplash.com"],
+    "default-src": [
+      "'self'",
+      "*.kakao.com",
+      "*.daumcdn.net",
+      "*.pstatic.net",
+      "*.unsplash.com",
+    ],
 
     // 카카오 API 도메인과 인라인 스크립트, eval 허용
-    "script-src": ["'self'", "*.kakao.com", "'unsafe-inline'", "'unsafe-eval'"],
+    "script-src": [
+      "'self'",
+      "*.kakao.com",
+      "*.daumcdn.net",
+      "'unsafe-inline'",
+      "'unsafe-eval'",
+    ],
 
     // 네이버 라이브 검색과 Unsplash에서 이미지 소스 허용
     "img-src": ["'self'", "data:", "*.pstatic.net", "*.unsplash.com"],
