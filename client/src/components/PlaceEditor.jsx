@@ -3,7 +3,6 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import axios from "axios";
 import { MapContainer } from "../utils/MapContainer";
-import { axiosInstance } from "../axiosConfig";
 
 const { kakao } = window;
 
@@ -109,8 +108,8 @@ const PlaceEditor = ({ isEdit, originData }) => {
           .then(() => navigate(`/place/${id}`))
           .catch((err) => alert(err));
       } else {
-        axiosInstance
-          .post("/place/new", {
+        axios
+          .post("/api/place/new", {
             placeName,
             roadAddress,
             desc,
