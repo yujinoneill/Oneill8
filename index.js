@@ -74,7 +74,12 @@ const cspOptions = {
 };
 
 if (process.env.NODE_ENV === "production") {
-  app.use(helmet({ contentSecurityPolicy: cspOptions }));
+  app.use(
+    helmet({
+      contentSecurityPolicy: cspOptions,
+      crossOriginResourcePolicy: false,
+    })
+  );
 }
 
 // Passport 세팅
