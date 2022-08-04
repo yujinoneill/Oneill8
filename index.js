@@ -79,6 +79,7 @@ if (process.env.NODE_ENV === "production") {
     helmet({
       contentSecurityPolicy: cspOptions,
       crossOriginEmbedderPolicy: false,
+      referrerPolicy: { policy: "strict-origin-when-cross-origin" },
     })
   );
 }
