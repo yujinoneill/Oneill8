@@ -79,7 +79,13 @@ const cspOptions = {
     ],
 
     // 네이버 라이브 검색과 Unsplash에서 이미지 소스 허용
-    "img-src": ["'self'", "data:", "*.pstatic.net", "*.unsplash.com"],
+    "img-src": [
+      "'self'",
+      "data:",
+      "*.daumcdn.net",
+      "*.pstatic.net",
+      "*.unsplash.com",
+    ],
 
     // 소스에 https와 http 허용
     "base-uri": ["http:"],
@@ -91,7 +97,6 @@ if (process.env.NODE_ENV === "production") {
     helmet({
       contentSecurityPolicy: cspOptions,
       crossOriginEmbedderPolicy: false,
-      // referrerPolicy: { policy: "strict-origin-when-cross-origin" },
     })
   );
 }
