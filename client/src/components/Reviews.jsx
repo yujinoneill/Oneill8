@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { useParams } from "react-router";
 
-import { axiosInstance } from "../config";
+import axios from "axios";
 import { isLoggedIn, loggedInUsername } from "../utils/cookies";
 
 import { getStringDate } from "../utils/date";
@@ -11,8 +11,8 @@ const ReviewBox = ({ placeId, _id, author, rate, review, date }) => {
 
   const reviewDeleteHandler = () => {
     if (window.confirm("리뷰를 삭제하시겠어요?")) {
-      axiosInstance
-        .delete(`/place/${placeId}/reviews/${reviewId}`)
+      axios
+        .delete(`/api/place/${placeId}/reviews/${reviewId}`)
         .then((res) => alert(res.data))
         .catch((err) => alert(err));
     }
@@ -70,8 +70,8 @@ const Reviews = ({ data }) => {
     if (reviewRef.current.value.length < 1) {
       return alert("리뷰를 작성해 주세요!");
     } else {
-      axiosInstance
-        .post(`/place/${id}/reviews`, {
+      axios
+        .post(`/api/place/${id}/reviews`, {
           rate,
           review: reviewRef.current.value,
           date: getStringDate(new Date()),

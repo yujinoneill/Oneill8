@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { axiosInstance } from "../../config";
+import axios from "axios";
 import LoginDesign from "../../components/LoginDesign";
 
 const Register = () => {
@@ -29,8 +29,8 @@ const Register = () => {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    axiosInstance
-      .post("/register", {
+    axios
+      .post("/api/register", {
         username,
         email,
         password: passwordConfirm,

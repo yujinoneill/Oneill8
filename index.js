@@ -69,7 +69,7 @@ const cspOptions = {
     "img-src": ["'self'", "data:", "*.pstatic.net", "*.unsplash.com"],
 
     // 소스에 https와 http 허용
-    "base-uri": ["/", "http:"],
+    "base-uri": ["http:"],
   },
 };
 

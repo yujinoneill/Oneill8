@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { axiosInstance } from "../../config";
+import axios from "axios";
 
 const MyPage = () => {
   const [reviews, setReviews] = useState();
   const navigate = useNavigate();
 
   useEffect(() => {
-    axiosInstance
-      .get("/mypage")
+    axios
+      .get("/api/mypage")
       .then((res) => setReviews(res.data))
       .catch((err) => alert(err));
   }, []);
