@@ -74,15 +74,15 @@ const cspOptions = {
   },
 };
 
-// if (process.env.NODE_ENV === "production") {
-//   app.use(
-//     helmet({
-//       contentSecurityPolicy: cspOptions,
-//       crossOriginEmbedderPolicy: false,
-//       referrerPolicy: { policy: "strict-origin-when-cross-origin" },
-//     })
-//   );
-// }
+if (process.env.NODE_ENV === "production") {
+  app.use(
+    helmet({
+      contentSecurityPolicy: cspOptions,
+      crossOriginEmbedderPolicy: false,
+      // referrerPolicy: { policy: "strict-origin-when-cross-origin" },
+    })
+  );
+}
 
 // Passport 세팅
 const passport = require("passport");
