@@ -40,7 +40,6 @@ const sessionConfig = {
   saveUninitialized: true,
   cookie: {
     httpOnly: true,
-    // secure: true, // 웹브라우저와 웹서버가 https로 통신하는 경우만 웹브라우저가 쿠키를 서버로 전송
     expires: Date.now() + 1000 * 60 * 60 * 24 * 7, // 세션 만료 기한 일주일
     maxAge: 1000 * 60 * 60 * 24 * 7,
   },
