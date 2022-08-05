@@ -63,7 +63,7 @@
 
 ### Place Detail / Review
 
-![](https://velog.velcdn.com/images/yujinoneill/post/2610484a-0245-4a2f-a690-214918dd89f5/image.gif)
+![](https://velog.velcdn.com/images/yujinoneill/post/d1b13dbf-06e2-4888-bc37-698c77856cd9/image.gif)
 
 - 로그인하지 않은 경우 리뷰 작성 폼이 표시되지 않음
 - 관리자 계정이 아닌 경우 맛집 수정 및 등록 버튼이 표시되지 않음
@@ -79,7 +79,7 @@
 
 ### Place Create / Update / Delete
 
-![](https://velog.velcdn.com/images/yujinoneill/post/f3550c8b-cc84-4cac-8739-cdead9305c7d/image.gif)
+![](https://velog.velcdn.com/images/yujinoneill/post/c514d618-47d6-4f01-9dc1-8e2da411e18c/image.gif)
 
 - 관리자 계정으로만 가능한 기능
 - isEdit과 originData를 props로 받아서 맛집 수정일 경우 폼에 originData를 불러옴
