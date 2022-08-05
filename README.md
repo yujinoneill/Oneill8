@@ -32,7 +32,7 @@
 
 ### Log In / Out
 
-![](https://velog.velcdn.com/images/yujinoneill/post/4251395b-17ef-4b8e-a40d-62960d18bdd1/image.gif)
+![](https://velog.velcdn.com/images/yujinoneill/post/f8a2a63c-560f-434c-9a1d-79bb4b57f249/image.gif)
 
 - Home과 마찬가지로 권한별 라우팅을 통해 로그인하지 않았을 경우에만 접근 가능
 - Passport 패키지를 사용하여 로그인과 로그아웃, 회원가입, 인증 등을 구현
@@ -63,7 +63,7 @@
 
 ### Place Detail / Review
 
-![](https://velog.velcdn.com/images/yujinoneill/post/ddffdf5f-55bf-4dd1-a0bd-25cf71e740d1/image.gif)
+![](https://velog.velcdn.com/images/yujinoneill/post/d1b13dbf-06e2-4888-bc37-698c77856cd9/image.gif)
 
 - 로그인하지 않은 경우 리뷰 작성 폼이 표시되지 않음
 - 관리자 계정이 아닌 경우 맛집 수정 및 등록 버튼이 표시되지 않음
@@ -79,7 +79,7 @@
 
 ### Place Create / Update / Delete
 
-![](https://velog.velcdn.com/images/yujinoneill/post/14d53c5b-c0a9-46f5-a89e-f0a9cd9a4200/image.gif)
+![](https://velog.velcdn.com/images/yujinoneill/post/c514d618-47d6-4f01-9dc1-8e2da411e18c/image.gif)
 
 - 관리자 계정으로만 가능한 기능
 - isEdit과 originData를 props로 받아서 맛집 수정일 경우 폼에 originData를 불러옴
