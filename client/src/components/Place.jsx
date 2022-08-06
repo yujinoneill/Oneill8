@@ -15,7 +15,7 @@ const Place = ({ _id, placeName, desc, image }) => {
           alt={`${placeName} 대표 사진`}
         />
       </div>
-      <div className="desc col-span-3 rounded-lg ml-3 bg-slate-50">
+      <div className="desc col-span-3 rounded-lg ml-3">
         <p className="place-name font-bold mb-1">{placeName}</p>
         <p className="place-desc text-xs text-base-300 truncate">{desc}</p>
       </div>
